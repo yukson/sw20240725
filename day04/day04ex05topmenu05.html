@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        header {
+            width: 800px;
+            margin: auto;
+            border: 0px solid gray;
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            margin: auto;
+            border: 0px solid red;
+            padding: 0;
+            /*height 속성을 주지 않고 overflow 설정*/
+            /* height: 40px; */
+            overflow: hidden;
+            /* border 때문에 600px이 아닌 610px을 주면 딱 맞는다. 그러나 바깥으로 늘어나가 하여 이를 해결할 수 있다.*/
+            width: 600px;
+        }
+        header ul li {
+            width: 120px;
+            height: 50px;
+            border: 0px solid black;
+            text-align: center;
+            list-style: none;
+            float: left;
+            /* 안쪽에서 바깥쪽으로 border가 늘어남 */
+            box-sizing: border-box;
+            line-height: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        nav {
+            border-bottom: 1px solid red;
+        }
+        header ul li:hover{
+            border-bottom: 2px solid red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>범준샘의 소프트웨어 공작실</h1>
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Profile</li>
+                <li>Gallery</li>
+                <li>Lecture</li>
+                <li>Shop</li>
+            </ul>
+        </nav>
+    </header>
+</body>
+</html>
