@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Todo List</h1>
+    <button id="loadBtn">목록 불러오기</button>
+    <ul id = "todoListArea"></ul>
+    <div id="demo">
+        <h2>The XMLHttpRequest Object</h2>
+        <button type="button" onClick="loadDoc()">Change Content</button>
+    </div>
+
+    <script>
+        //jQuery 라이브러리의 ajax() 함수
+        //axios 라이브러리 이용 (CDN 또는 설치)
+        //fetch 모듈(웹 브라우저 표준)
+        //XMLHttpRequest 객체 (웹 브라우저 표준)
+        // function loadDoc(){
+        //     //EventTarget을 상속받음(기능, 일을 상속받음)
+        //     //EventTarget <- XMLHttpRequestEventTarget <- XMLHttpRequest
+        //     const xhttp = new XMLHttpRequest(); //연산자가 아니면 new를 써야한다?
+        //     console.dir(xhttp);
+        //     xhttp.onload = function() {
+        //         document.getElementById("demo").innerText = this.responseText;
+        //     }
+        //     xhttp.open("GET", "data.txt");
+        //     xhttp.send();
+        // }
+
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(event) {
+            if(status === 200 && xhr.readyState === 4) {
+                // 요청 결과가 모두 로드되면 실행(onload와 동일)
+                //console.log("readyState: ", xhr.readyState);
+                //console.log("status: ", xhr.status);
+                //console.log(xhr.responeText);
+                //var doc = xhr.responseXML;
+                //console.log(doc.getElementByTagName("h2")[0]);
+                //console.log(doc.querySelectorAll("p"[0]));
+                //console.dir(xhr);
+
+                var todoListTxt = xhr.responseText;
+                var todoList = JSON.parse(todoListTxt)['todoList'];
+                var noCnt = JSON.parse(todoListTxt)['noCnt'];
+
+                //console.log(todoList);
+                //console.log(noCnt);
+
+                const todoListArea = document.querySelector('#todoListArea');
+                todoList.forEach(todo => {
+                    const liElement = document.createElement("li");
+                    liElement.innerHTML = todo.title;
+                    todoListArea.appendChild(liElement);
+                });
+            }
+        }
+
+        var method = "GET";
+        var url = "todoList.json";
+        xhr.open(method, url);
+
+        xhr.send();
+    </script>
+</body>
+</html>
